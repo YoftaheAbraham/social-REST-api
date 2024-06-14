@@ -1,0 +1,11 @@
+/node_modules
+
+# Log files
+*.log
+
+# Environment variables
+.env
+
+# Dependency directories
+/bin
+/public
