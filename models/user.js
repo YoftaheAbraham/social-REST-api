@@ -36,7 +36,7 @@ const userSchema = new mongoose.Schema({
     profile_picture: {
         type: String,
         trim: true,
-        default: "http://localhost:6050/api/files/profileImages/default"
+        default: "https://firebasestorage.googleapis.com/v0/b/yofigram-5504e.appspot.com/o/userFiles%2Fdefault_acc_pic.jpg?alt=media&token=fad13081-01e0-4cf1-ba0b-43110a7499c0"
     },
     saves: {
         type: Array,
