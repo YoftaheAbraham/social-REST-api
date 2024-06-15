@@ -54,7 +54,7 @@ export const virtualRegistery = async (req, res, next) => {
                 username: userData.username,
                 Account_name: userData.Account_name
             });
-            await mailSender(userData.email, "verification", `
+            await mailSender(userData.email, "One-time verification", `
 
             To verify your account, please use the following verification code: 
             <br><h2 style="color: purple">${otp}</h2>
@@ -207,7 +207,7 @@ export const resetPass = async (req, res) => {
                     email: body.email,
                     id: data.id
                 });
-                let url = `http://${body.clientURL}/reset/${token}`;
+                let url = `http://${body.clientURL}/#/reset/${token}`;
 
                 
                 await mailSender(body.email, "Reset Your Password", `
