@@ -444,7 +444,7 @@ export const updateUser = async (req, res) => {
                     await uploadBytes(reference, imageBuffer)
                     const url = await getDownloadURL(reference)
                     await userModel.findByIdAndUpdate(userID, {
-                        username, Account_name, bio,
+                        username: username.replace(" ", ""), Account_name, bio,
                         profile_picture: url,
                         isNewUser: false
                     })
@@ -453,14 +453,14 @@ export const updateUser = async (req, res) => {
                         message: "successfully updated your profile",
                         url
                     })
-                } else {
+                } else if(req.file.mimetype == "image/png") {
                     const extension = path.extname(file.originalname)
                     const fileName = `${v4()}${extension}`
                     const reference = ref(storage, `/userFiles/${fileName}`);
                     await uploadBytes(reference, req.file.buffer)
                     const url = await getDownloadURL(reference)
                     await userModel.findByIdAndUpdate(userID, {
-                        username, Account_name, bio,
+                        username: username.replace(" ", ""), Account_name, bio,
                         profile_picture: url,
                         isNewUser: false
                     })
@@ -472,8 +472,7 @@ export const updateUser = async (req, res) => {
                 }
             } else {
                 await userModel.findByIdAndUpdate(userID, {
-                    username, Account_name, bio,
-
+                    username: username.replace(" ", ""), Account_name, bio,
                 })
                 res.status(200).json({
                     status: "success",
